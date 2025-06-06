@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 배틀쉽 게임
 
-## Getting Started
+Next.js로 구현된 실시간 온라인 배틀쉽 게임입니다.
 
-First, run the development server:
+## 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **런타임**: Node.js v22.11.0
+- **프레임워크**: [Next.js](https://nextjs.org) v15.3.3 (App Router)
+- **언어**: TypeScript v5.0.0
+- **상태 관리**: Zustand v5.0.5
+- **스타일링**: 
+  - Tailwind CSS v4.0.0
+  - Shadcn/UI
+- **실시간 통신**: Socket.IO v4.8.1
+- **개발 도구**:
+  - ESLint v9.0.0
+  - Husky v9.1.7
+  - Jest
+
+## 프로젝트 구조
+
+```
+battleship-game/
+├── src/
+│   ├── app/                 # Next.js 앱 라우터
+│   ├── components/          # 재사용 가능한 UI 컴포넌트
+│   │   └── ui/              # 쉐이든 ui 컴포넌트
+│   ├── core/                # 핵심 데이터
+│   │   ├── constants/       # 상수
+│   │   ├── data/            # 게임 데이터
+│   │   └── types/           # 타입 정의
+│   ├── lib/                 # 유틸리티 함수
+│   └── store/               # Zustand 스토어
+└── public/                # 정적 파일
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 개발 환경 설정
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. 저장소 클론
+```bash
+git clone https://github.com/mental-disaster/battleship-game.git
+cd battleship-game
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. 의존성 설치
+```bash
+npm install
+```
 
-## Learn More
+3. 개발 서버 실행
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. 브라우저에서 확인
+```
+http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 빌드 및 배포
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 빌드
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+### 프로덕션 서버 실행
+```bash
+npm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 게임 규칙
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. 각 플레이어는 5개의 배를 보드에 배치합니다:
+   - 항공모함 (5칸)
+   - 전함 (4칸)
+   - 순양함 (3칸)
+   - 잠수함 (3칸)
+   - 구축함 (2칸)
+
+2. 배는 가로로만 배치할 수 있습니다.
+
+3. 배는 서로 겹치거나 인접할 수 없습니다.
+
+4. 플레이어는 번갈아가며 상대방의 보드를 공격합니다.
+
+5. 모든 배가 격침되면 게임이 종료됩니다.
