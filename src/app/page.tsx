@@ -1,6 +1,6 @@
 'use client';
 
-import { GAME_MODES } from '@/data/gameModes';
+import { GAME_MODES } from '@/core/data/gameModes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useGameStore } from '@/store/gameStore';
